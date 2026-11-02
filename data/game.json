@@ -1,0 +1,236 @@
+{
+  "dt": 0.016666666666666666,
+  "screen": { "width": 390, "height": 700 },
+  "goal_time": 120.0,
+  "assets": {
+    "raw_dir": "raw_art",
+    "out_dir": "assets",
+    "scale": 3,
+    "copy": [
+      "bat.png",
+      "demon.png",
+      "floor.png",
+      "gem.png",
+      "ghost.png",
+      "hero.png",
+      "slime.png",
+      "sword.png"
+    ],
+    "gems": [
+      {
+        "out": "gem_blue.png",
+        "source": "gem.png",
+        "xp": 1,
+        "dark": [25, 70, 190],
+        "bright": [140, 225, 255]
+      },
+      {
+        "out": "gem_pink.png",
+        "source": "gem.png",
+        "xp": 2,
+        "dark": [185, 30, 135],
+        "bright": [255, 150, 235]
+      }
+    ]
+  },
+  "hero": {
+    "speed": 120,
+    "hp": 100,
+    "radius": 12,
+    "magnet": 60,
+    "stop_distance": 12,
+    "picture": "hero.png"
+  },
+  "floor": { "picture": "floor.png", "tile": 48 },
+  "contact": { "hurt_interval": 0.5 },
+  "spawning": {
+    "interval": 1.0,
+    "max_per_interval": 8,
+    "max_alive": 120,
+    "spawn_radius": 380,
+    "despawn_radius": 700,
+    "boss_return_radius": 600,
+    "schedule": [
+      { "time": 0.0, "types": ["bat"], "min_alive": 12 },
+      { "time": 15.0, "types": ["bat"], "min_alive": 20 },
+      { "time": 30.0, "types": ["bat", "slime"], "min_alive": 28 },
+      { "time": 45.0, "types": ["slime", "ghost"], "min_alive": 36 },
+      { "time": 60.0, "types": ["bat", "ghost"], "min_alive": 45 },
+      { "time": 75.0, "types": ["bat", "slime", "ghost"], "min_alive": 55 },
+      { "time": 90.0, "types": ["bat", "slime"], "min_alive": 55, "boss": "demon" },
+      { "time": 105.0, "types": ["bat"], "min_alive": 75 }
+    ]
+  },
+  "enemies": {
+    "bat": {
+      "hp": 8,
+      "speed": 100,
+      "damage": 5,
+      "xp": 1,
+      "radius": 10,
+      "picture": "bat.png",
+      "scale": 1,
+      "boss": false
+    },
+    "slime": {
+      "hp": 30,
+      "speed": 55,
+      "damage": 8,
+      "xp": 2,
+      "radius": 12,
+      "picture": "slime.png",
+      "scale": 1,
+      "boss": false
+    },
+    "ghost": {
+      "hp": 15,
+      "speed": 135,
+      "damage": 6,
+      "xp": 2,
+      "radius": 10,
+      "picture": "ghost.png",
+      "scale": 1,
+      "boss": false
+    },
+    "demon": {
+      "hp": 800,
+      "speed": 85,
+      "damage": 20,
+      "xp": 0,
+      "radius": 20,
+      "picture": "demon.png",
+      "scale": 2,
+      "boss": true
+    }
+  },
+  "gems": {
+    "speed": 300,
+    "by_xp": { "1": "gem_blue.png", "2": "gem_pink.png" }
+  },
+  "level": {
+    "first_xp": 5,
+    "xp_per_level": 3,
+    "max_level": 5,
+    "cards": 3,
+    "heal_when_nothing_left": 30
+  },
+  "max_weapons": 3,
+  "weapons": {
+    "spark_wand": {
+      "name": "Spark Wand",
+      "label": "Spark",
+      "speed": 400,
+      "interval": 0.8,
+      "min_interval": 0.1,
+      "damage": 10,
+      "count": 1,
+      "damage_per_level": 3,
+      "interval_minus_per_level": 0.08,
+      "extra_spark_levels": [3, 5],
+      "range": 380,
+      "radius": 4,
+      "color": [255, 220, 120],
+      "new_text": "shoots a spark at the nearest enemy",
+      "up_text": "+3 damage and 0.08 s faster"
+    },
+    "spin_blades": {
+      "name": "Spin Blades",
+      "label": "Blades",
+      "radius": 60,
+      "turn_time": 1.5,
+      "hit_interval": 0.5,
+      "blades": 2,
+      "damage": 8,
+      "damage_per_level": 3,
+      "extra_blade_levels": [2, 4],
+      "blade_radius": 12,
+      "picture": "sword.png",
+      "picture_scale": 0.5,
+      "new_text": "blades circle you and cut on touch",
+      "up_text": "+3 damage"
+    },
+    "holy_ring": {
+      "name": "Holy Ring",
+      "label": "Ring",
+      "damage": 5,
+      "radius": 50,
+      "interval": 0.5,
+      "damage_per_level": 2,
+      "radius_per_level": 10,
+      "color": [255, 255, 160],
+      "new_text": "hurts everything close around you",
+      "up_text": "+2 damage and +10 px radius"
+    }
+  },
+  "passives": {
+    "swift_boots": {
+      "name": "Swift Boots",
+      "label": "Boots",
+      "speed_up_per_level": 0.1,
+      "new_text": "+10% walking speed",
+      "up_text": "+10% walking speed"
+    },
+    "big_heart": {
+      "name": "Big Heart",
+      "label": "Heart",
+      "hp_per_level": 20,
+      "heal": 20,
+      "new_text": "+20 max HP and heal 20",
+      "up_text": "+20 max HP and heal 20"
+    },
+    "magnet": {
+      "name": "Magnet",
+      "label": "Magnet",
+      "magnet_per_level": 30,
+      "new_text": "pick up gems from further away",
+      "up_text": "+30 px gem pickup range"
+    }
+  },
+  "cards": { "width": 340, "height": 150, "gap": 16 },
+  "sounds": {
+    "dir": "sounds",
+    "names": ["hit", "gem", "level_up", "hurt", "end"],
+    "volume": 0.5,
+    "min_gap": 0.06
+  },
+  "sound_maker": {
+    "dir": "sounds",
+    "sample_rate": 22050,
+    "sounds": {
+      "hit": {
+        "parts": [
+          { "wave": "square", "from": 620, "to": 220, "length": 0.06, "volume": 0.35, "decay": 30 }
+        ]
+      },
+      "gem": {
+        "parts": [
+          { "wave": "sine", "from": 880, "to": 1400, "length": 0.09, "volume": 0.4, "decay": 14 }
+        ]
+      },
+      "level_up": {
+        "parts": [
+          { "wave": "sine", "from": 523, "to": 523, "length": 0.08, "volume": 0.4, "decay": 6 },
+          { "wave": "sine", "from": 659, "to": 659, "length": 0.08, "volume": 0.4, "decay": 6 },
+          { "wave": "sine", "from": 784, "to": 784, "length": 0.16, "volume": 0.45, "decay": 5 }
+        ]
+      },
+      "hurt": {
+        "parts": [
+          { "wave": "noise", "from": 0, "to": 0, "length": 0.12, "volume": 0.4, "decay": 22 }
+        ]
+      },
+      "end": {
+        "parts": [
+          { "wave": "triangle", "from": 392, "to": 392, "length": 0.12, "volume": 0.4, "decay": 6 },
+          { "wave": "triangle", "from": 294, "to": 262, "length": 0.3, "volume": 0.4, "decay": 5 }
+        ]
+      }
+    }
+  },
+  "feel": {
+    "damage_number": { "lifetime": 0.6, "rise": 34, "size": 18, "color": [255, 240, 190] },
+    "death_flash": { "lifetime": 0.14, "color": [255, 255, 255], "radius": 26 },
+    "hurt_shake": { "time": 0.2, "amount": 6 }
+  },
+  "starting_weapon": "spark_wand"
+}
